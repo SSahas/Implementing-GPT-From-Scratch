@@ -1,1 +1,1 @@
-# Implemeting-Decoder-Only-Model-GPT-style-Model-with-Pytorch
+# Implementing Decoder only Model (GPT style) from scratch with Pytorch
