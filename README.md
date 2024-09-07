@@ -8,7 +8,7 @@
 - n_heads = 8
 - block_size = 512 
 - batch_size = 8
-- model parameters - 47987712
+- model parameters - 48 Million
 - optimizer - adam
 - learning rate - 5e-4
 
