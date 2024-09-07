@@ -9,6 +9,8 @@
 - block_size = 512 
 - batch_size = 8
 - model parameters - 47987712
+- optimizer - adam
+- learning rate - 5e-4
 
 # Loss Curve 
 ![cross_entropy_loss_curve](https://github.com/user-attachments/assets/70396741-6fab-4ca0-96b6-a1e32ca49826)
