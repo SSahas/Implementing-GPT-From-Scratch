@@ -1,7 +1,5 @@
 # Implementing Decoder only Model (GPT style) from scratch with Pytorch
-- PreTraining a LLM the model for Text generation.
-- Trained the model on SalesForce/wikitext.
-- Trained WordPeice Tokenizer using transformers
+- Pretraining a LLM the model for Text generation, used Salesforce/wikitext for trainig. The model was trained for 30000 iterations with batch size of 8 for ~2.5 hours on Tesla P100 (Kaggle Free gpu support). The training loss is around 3.5. Used adam optimizer with a learning rate of 5e-4. After Traning the model is able to produce little reasonable english, can be trained for more time with bigger n_embd and block size for better reuslts and finetuning for other downstream tasks.
 
 ## Model Details
 - n_embd = 512
