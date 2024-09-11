@@ -13,6 +13,25 @@ learning rate = 5e-4
 ```
 
 
+## Model Traning
+```
+for iter in range(max_iters):
+
+    xb, yb = get_batch()
+
+    logits, loss = model(batch = xb, targets = yb)
+    
+    losses.append(loss.item())
+
+    if (iter % 100) == 0:
+        print(loss, iter)
+    
+    optimizer.zero_grad(set_to_none=True)
+    loss.backward()
+    optimizer.step()
+```
+
+
 # Loss Curve 
 ![cross_entropy_loss_curve](https://github.com/user-attachments/assets/70396741-6fab-4ca0-96b6-a1e32ca49826)
 
