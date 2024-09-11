@@ -12,6 +12,40 @@ batch_size = 8
 learning rate = 5e-4
 ```
 
+## Load Dataset for training
+
+- Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer. added a special token "<|EOS|>" as bos and eos token.
+
+```
+tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
+
+tokenizer.normalizer = normalizers.Sequence(
+    [
+        normalizers.Replace(r"[\p{Other}&&[^\n\t\r]]", ""),
+        normalizers.Replace(r"[\s]", " "),
+        #normalizers.Lowercase(),
+        normalizers.NFD(), normalizers.StripAccents()]
+)
+
+tokenizer.pre_tokenizer = pre_tokenizers.Whitespace()
+
+special_tokens = ["[UNK]", "<|EOS|>"]
+trainer = WordPieceTrainer(vocab_size=40000,  special_tokens=special_tokens)
+
+
+for split in ds.keys():
+    tokenizer.train_from_iterator(ds[split]['text'], trainer=trainer)
+
+eos_token_id = tokenizer.token_to_id("<|EOS|>")
+
+tokenizer.post_processor = processors.TemplateProcessing(
+
+    single="<|EOS|> $A <|EOS|>",
+
+    special_tokens=[ ("<|EOS|>", eos_token_id)],
+
+)
+```
 
 ## Model Traning
 ```
