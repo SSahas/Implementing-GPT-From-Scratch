@@ -17,6 +17,6 @@
 
 # References 
 
-- [Andrej karpathy YouTube Series](https://www.youtube.com/watch?v=VMj-3S1tku0&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)
+- [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
 - [t5-pytorch](https://github.com/conceptofmind/t5-pytorch)
 
