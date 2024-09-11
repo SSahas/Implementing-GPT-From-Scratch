@@ -9,7 +9,7 @@ n_layers = 6
 n_heads = 8
 block_size = 512 # number to previous tokens to attend to perform attention
 batch_size = 8
-learning rate - 5e-4
+learning rate = 5e-4
 ```
 
 
