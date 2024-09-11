@@ -9,8 +9,6 @@ n_layers = 6
 n_heads = 8
 block_size = 512 # number to previous tokens to attend to perform attention
 batch_size = 8
-model parameters - 48 Million
-optimizer - adam
 learning rate - 5e-4
 ```
 
