@@ -14,7 +14,7 @@ learning rate = 5e-4
 
 ## Load Dataset for training
 
-- Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer. added a special token "<|EOS|>" as bos and eos token.
+- To create data file for traning the model run this [Tokenizer_Training notebook](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb).Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer. added a special token "<|EOS|>" as bos and eos token.
 
 ```
 tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
