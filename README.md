@@ -48,6 +48,8 @@ tokenizer.post_processor = processors.TemplateProcessing(
 ```
 
 ## Model Traning
+
+- Used a basic for loop for training the model.
 ```
 for iter in range(max_iters):
 
