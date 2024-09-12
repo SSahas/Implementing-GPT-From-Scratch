@@ -14,8 +14,7 @@ learning rate = 5e-4
 
 ## Load Dataset for training
 
-- To create data file and the tokenizer for traning the model run [Tokenizer_Training notebook](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb).Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer. added a special token "<|EOS|>" as bos and eos token.
-
+- To create data file and the tokenizer for traning the model run [Tokenizer_Training notebook](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb). Added a special token "<|EOS|>" as bos and eos token.Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer.
 ```
 tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
 
@@ -49,7 +48,7 @@ tokenizer.post_processor = processors.TemplateProcessing(
 
 ## Model Traning
 
-- Used a basic for loop for training the model.
+- Used a basic for loop for training the model. After creating the data file and tokenizer run [Model_Training.ipynb](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb) for trainig the LLM model.
 ```
 for iter in range(max_iters):
 
@@ -57,10 +56,7 @@ for iter in range(max_iters):
 
     logits, loss = model(batch = xb, targets = yb)
     
-    losses.append(loss.item())
 
-    if (iter % 100) == 0:
-        print(loss, iter)
     
     optimizer.zero_grad(set_to_none=True)
     loss.backward()
