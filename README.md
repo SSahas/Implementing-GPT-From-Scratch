@@ -72,7 +72,7 @@ for iter in range(max_iters):
 ![cross_entropy_loss_curve](https://github.com/user-attachments/assets/70396741-6fab-4ca0-96b6-a1e32ca49826)
 
 # References 
-
 - [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
 - [t5-pytorch](https://github.com/conceptofmind/t5-pytorch)
+- [nonoT5](https://github.com/PiotrNawrot/nanoT5)
 
