@@ -15,6 +15,18 @@ learning rate = 5e-4
 ## Load Dataset for training
 
 - To create data file and the tokenizer for traning the model, run [Tokenizer_Training notebook](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb). Added a special token "<|EOS|>" as bos and eos token.Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer.
+
+### Load data from huggingface 
+
+```
+from datasets import load_dataset
+
+ds = load_dataset("SSahas/llm_pretrain_dataset")                # load data file from huggingface
+print(dataset)
+data = torch.tensor(dataset['train']['input_ids'], dtype = torch.long, device = device)
+```
+
+### Tokenizer Training
 ```
 tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
 
