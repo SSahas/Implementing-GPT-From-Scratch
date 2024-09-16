@@ -16,10 +16,14 @@ learning rate = 5e-4
 
 - To create data file and the tokenizer for traning the model, run [Tokenizer_Training notebook](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb). Added a special token "<|EOS|>" as bos and eos token.Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer.
 
-### Load data from huggingface 
+### Load datafile  from huggingface 
 
 ```
 from datasets import load_dataset
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("SSahas/llm_tokenizer")
+
 
 ds = load_dataset("SSahas/llm_pretrain_dataset")                # load data file from huggingface
 print(dataset)
