@@ -16,13 +16,13 @@ learning rate = 5e-4
 ## Training 
 - To train the model
 ```
-python src/train.py --config config/config.json
+python train.py --config config/config.json
 ```
 
 ## Inferencee 
 - To generate text using a trained model
 ```
-python src/generate.py --model_path path/to/saved/model --prompt "Your prompt here"
+python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
 ```
 
 ## Load Dataset for training
