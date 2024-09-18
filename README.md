@@ -12,23 +12,24 @@ batch_size = 8
 learning rate = 5e-4
 ```
 
+
+## Training 
+- To train the model
+```
+python src/train.py --config config/config.json
+```
+
+## Inferencee 
+- To generate text using a trained model
+```
+python src/generate.py --model_path path/to/saved/model --prompt "Your prompt here"
+```
+
 ## Load Dataset for training
 
 - To create data file and the tokenizer for traning the model, run [Tokenizer_Training notebook](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb). Added a special token "<|EOS|>" as bos and eos token.Used [Salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext) for pretrainig the model and training the tokenizer.
 
-### Load datafile  from huggingface 
 
-```
-from datasets import load_dataset
-from transformers import AutoTokenizer
-
-tokenizer = AutoTokenizer.from_pretrained("SSahas/llm_tokenizer")
-
-
-ds = load_dataset("SSahas/llm_pretrain_dataset")                # load data file from huggingface
-print(dataset)
-data = torch.tensor(dataset['train']['input_ids'], dtype = torch.long, device = device)
-```
 
 ### Tokenizer Training
 ```
@@ -81,7 +82,7 @@ for iter in range(max_iters):
 
 
 # Loss Curve 
-![cross_entropy_loss_curve](https://github.com/user-attachments/assets/70396741-6fab-4ca0-96b6-a1e32ca49826)
+![cross_entropy_loss_curve](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/assets/cross_entropy_loss_curve.png)
 
 # References 
 - [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
