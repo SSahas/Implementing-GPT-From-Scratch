@@ -1,7 +1,6 @@
 import torch
 import json
 import argparse
-from tqdm import tqdm
 from pathlib import Path
 import matplotlib.pyplot as plt
 
@@ -13,19 +12,20 @@ def train(config: dict, model: DecoderOnlyModel, data_loader: DataLoader):
     model = model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=config['training']['learning_rate'])
     
-    progress_bar = tqdm(range(config['training']['max_iters']), desc="Training")
+    max_iters = config['training']['max_iters']
     losses = []
 
-    for iter in progress_bar:
+    for iter in range(max_iters):
         xb, yb = data_loader.get_batch()
-        logits, loss = model(xb, yb)
+        _, loss = model(xb, yb)
         losses.append(loss.item())
 
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
 
-        progress_bar.set_postfix({"loss": loss.item()})
+        if (iter + 1) % 100 == 0:
+          print(f"Step {iter + 1}: Loss = {loss.item()}")
 
         if (iter + 1) % 10000 == 0:
             torch.save({
