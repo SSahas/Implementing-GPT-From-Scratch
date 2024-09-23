@@ -81,7 +81,7 @@ for iter in range(max_iters):
 ```
 
 
-# Loss Curve 
+# Train Loss Curve 
 ![cross_entropy_loss_curve](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/assets/cross_entropy_loss_curve.png)
 
 # References 
