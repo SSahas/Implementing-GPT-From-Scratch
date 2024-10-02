@@ -12,7 +12,11 @@ batch_size = 8
 learning rate = 5e-4
 ```
 
+- To train the model , clone the repository 
 
+```
+git clone SSahas/Implementing-LLM-From-Scratch
+```
 ## Training 
 - To train the model
 ```
