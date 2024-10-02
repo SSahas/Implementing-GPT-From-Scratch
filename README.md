@@ -69,7 +69,7 @@ tokenizer.post_processor = processors.TemplateProcessing(
 
 ## Model Traning
 
-- Used a basic for loop for training the model. After creating the data file and tokenizer run [Model_Training.ipynb](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/Tokenizer_Training.ipynb) for trainig the LLM model.
+- Used a basic for loop for training the model. 
 ```
 for iter in range(max_iters):
 
