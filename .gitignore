@@ -8,8 +8,7 @@ venv/
 
 
 
-.DS_Store
-Thumbs.db
+
 
 checkpoints/
 
@@ -18,5 +17,4 @@ checkpoints/
 .ipynb_checkpoints
 
 
-*.log
 plots/
