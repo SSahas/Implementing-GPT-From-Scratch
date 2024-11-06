@@ -86,7 +86,7 @@ for iter in range(max_iters):
 
 
 # Train Loss Curve 
-![cross_entropy_loss_curve](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/assets/cross_entropy_loss_curve.png)
+![cross_entropy_loss_curve](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/assets/loss_curve.png)
 
 # References 
 - [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
