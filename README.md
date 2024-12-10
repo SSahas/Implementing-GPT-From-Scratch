@@ -23,7 +23,7 @@ git clone https://github.com/SSahas/Implementing-LLM-From-Scratch
 python train.py --config config/config.json
 ```
 
-## Inferencee 
+## Inference
 - To generate text using a trained model
 ```
 python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
