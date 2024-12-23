@@ -35,54 +35,6 @@ python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
 
 
 
-### Tokenizer Training
-```
-tokenizer = Tokenizer(WordPiece(unk_token="[UNK]"))
-
-tokenizer.normalizer = normalizers.Sequence(
-    [
-        normalizers.Replace(r"[\p{Other}&&[^\n\t\r]]", ""),
-        normalizers.Replace(r"[\s]", " "),
-        #normalizers.Lowercase(),
-        normalizers.NFD(), normalizers.StripAccents()]
-)
-
-tokenizer.pre_tokenizer = pre_tokenizers.Whitespace()
-
-special_tokens = ["[UNK]", "<|EOS|>"]
-trainer = WordPieceTrainer(vocab_size=40000,  special_tokens=special_tokens)
-
-
-for split in ds.keys():
-    tokenizer.train_from_iterator(ds[split]['text'], trainer=trainer)
-
-eos_token_id = tokenizer.token_to_id("<|EOS|>")
-
-tokenizer.post_processor = processors.TemplateProcessing(
-
-    single="<|EOS|> $A <|EOS|>",
-
-    special_tokens=[ ("<|EOS|>", eos_token_id)],
-
-)
-```
-
-## Model Traning
-
-- Used a basic for loop for training the model. 
-```
-for iter in range(max_iters):
-
-    xb, yb = get_batch()
-
-    logits, loss = model(batch = xb, targets = yb)
-    
-
-    
-    optimizer.zero_grad(set_to_none=True)
-    loss.backward()
-    optimizer.step()
-```
 
 
 # Train Loss Curve 
