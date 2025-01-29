@@ -1,2 +1,2 @@
-- The load_data.py is used to load the tokenized data from huggingface_hub for training the model. The original text dataset which is used  as the pretraining data is
+- The load_data.py is used to load the [tokenized data](https://huggingface.co/datasets/SSahas/llm_pretrain_dataset) from huggingface_hub for training the model. The original text dataset which is used  as the pretraining data is
 [salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext). To know how the tokenized dataset is created , see [preprocessing.ipynb](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/assets/preprocessing.ipynb)
