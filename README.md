@@ -15,7 +15,7 @@ learning rate = 5e-4
 - To train the model , clone the repository 
 
 ```
-git clone https://github.com/SSahas/Implementing-LLM-From-Scratch
+git clone https://github.com/SSahas/Implementing-GPT-From-Scratch.git
 ```
 ## Training 
 - To train the model
