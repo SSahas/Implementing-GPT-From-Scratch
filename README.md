@@ -43,5 +43,5 @@ python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
 # References 
 - [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
 - [t5-pytorch](https://github.com/conceptofmind/t5-pytorch)
-- [nonoT5](https://github.com/PiotrNawrot/nanoT5)
+- [nanoT5](https://github.com/PiotrNawrot/nanoT5)
 
