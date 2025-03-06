@@ -66,7 +66,7 @@ def train(config: dict, model: DecoderOnlyModel):
         optimizer.step()
 
         if (((iter + 1) % 100) == 0) or ((iter + 1) == max_iters) :
-            losses = estimate_loss()
+            losses = estimate_loss(config)
             print(f"Step {iter + 1}: Train Loss = {losses['train']:.4f}, Eval loss = {losses['test']:.4f}")
             train_losses.append(losses['train'])
             test_losses.append(losses['test'])
