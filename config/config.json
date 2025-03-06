@@ -2,7 +2,7 @@
 {
 "model" :{
 "n_embd" : 512,
-"vocab_size" : 28144,
+"vocab_size" : 50257,
 "n_layers" : 6,
 "n_heads" : 8,
 "block_size" : 512
