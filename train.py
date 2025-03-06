@@ -33,7 +33,7 @@ def get_batch(split, config):
 
 
 @torch.no_grad()
-def estimate_loss(config):
+def estimate_loss(config, model):
     out = {}
     model.eval()
     for split in ['train', 'val']:
@@ -66,7 +66,7 @@ def train(config: dict, model: DecoderOnlyModel):
         optimizer.step()
 
         if (((iter + 1) % 100) == 0) or ((iter + 1) == max_iters) :
-            losses = estimate_loss(config)
+            losses = estimate_loss(config, model)
             print(f"Step {iter + 1}: Train Loss = {losses['train']:.4f}, Eval loss = {losses['test']:.4f}")
             train_losses.append(losses['train'])
             test_losses.append(losses['test'])
@@ -77,14 +77,15 @@ def train(config: dict, model: DecoderOnlyModel):
                 'optimizer_state_dict': optimizer.state_dict(),
                 'loss': loss,
                 'iter': iter,
-            }, f"checkpoints/model_iter_{iter+1}.pt")
+            }, f"{os.getcwd()}/checkpoints/model_iter_{iter+1}.pt")
 
             
     
     return train_losses, test_losses
 
 def plot_loss_curve(losses: list, split : str):
-    save_path = "plots" / f"{split}.png" 
+    
+    save_path = f"{os.getcwd()}/plots/{split}.png"
     plt.figure(figsize=(10, 6))
     plt.plot(losses)
     plt.title(f'{split} Loss Curve')
