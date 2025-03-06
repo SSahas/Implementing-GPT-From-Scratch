@@ -18,6 +18,11 @@ learning rate = 5e-4
 git clone https://github.com/SSahas/Implementing-GPT-From-Scratch.git
 ```
 ## Training 
+- Create Tokenized data
+```
+python data/load_data.py
+```
+
 - To train the model
 ```
 python train.py --config config/config.json
