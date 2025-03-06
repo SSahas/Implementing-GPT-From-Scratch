@@ -36,7 +36,7 @@ def get_batch(split, config):
 def estimate_loss(config, model):
     out = {}
     model.eval()
-    for split in ['train', 'val']:
+    for split in ['train', 'test']:
         losses = torch.zeros(config['training']['eval_iters'])
         for k in range(config['training']['eval_iters']):
             X, Y = get_batch(split, config)
