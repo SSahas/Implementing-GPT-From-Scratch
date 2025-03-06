@@ -12,7 +12,7 @@ from data import load_data
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-data_dir  = "data"
+data_dir = f"{os.getcwd()}/data"
 
 
 def get_batch(split):
