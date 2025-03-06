@@ -15,16 +15,16 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 data_dir = f"{os.getcwd()}/Implementing-GPT-From-Scratch/data"
 
 
-def get_batch(split):
+def get_batch(split, config):
 
     if split == 'train':
         data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
     else:
         data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')
 
-    ix = torch.randint(len(data) - block_size, (batch_size,))
-    x = torch.stack([torch.from_numpy((data[i:i+block_size]).astype(np.int64)) for i in ix])
-    y = torch.stack([torch.from_numpy((data[i+1:i+1+block_size]).astype(np.int64)) for i in ix])
+    ix = torch.randint(len(data) - config['model']['block_size'], (config['training']['batch_size'],))
+    x = torch.stack([torch.from_numpy((data[i:i+config['model']['block_size']]).astype(np.int64)) for i in ix])
+    y = torch.stack([torch.from_numpy((data[i+1:i+1+config['model']['block_size']]).astype(np.int64)) for i in ix])
     if device == 'cuda':
         x, y = x.pin_memory().to(device, non_blocking=True), y.pin_memory().to(device, non_blocking=True)
     else:
@@ -33,13 +33,13 @@ def get_batch(split):
 
 
 @torch.no_grad()
-def estimate_loss():
+def estimate_loss(config):
     out = {}
     model.eval()
     for split in ['train', 'val']:
         losses = torch.zeros(eval_iters)
-        for k in range(eval_iters):
-            X, Y = get_batch(split)
+        for k in range(config['training']['eval_iters']):
+            X, Y = get_batch(split, config)
             logits, loss = model(X, Y)
             losses[k] = loss.item()
         out[split] = losses.mean()
@@ -58,7 +58,7 @@ def train(config: dict, model: DecoderOnlyModel):
     test_losses  = []
 
     for iter in range(max_iters):
-        xb, yb = get_batch('train')
+        xb, yb = get_batch('train', config = config)
         _, loss = model(xb, yb)
         
         optimizer.zero_grad(set_to_none=True)
