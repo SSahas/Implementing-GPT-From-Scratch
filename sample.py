@@ -6,6 +6,8 @@ from pathlib import Path
 from model import DecoderOnlyModel
 from transformers import AutoTokenizer
 
+
+
 def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
     with open(config_path, 'r') as f:
         config = json.load(f)
@@ -19,7 +21,7 @@ def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
 def generate_text(model: DecoderOnlyModel, tokenizer, prompt: str, max_new_tokens: int, temperature: float = 1.0) -> str:
     device = next(model.parameters()).device
     print(device)
-    input_ids = tokenizer.encode(prompt, return_tensors='pt')
+    input_ids = tokenizer.encode_ordinary(prompt, return_tensors='pt')
     input_ids = input_ids[:, :-1]
        
     with torch.no_grad():
@@ -48,11 +50,11 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
 
-    # Load the tokenizer
-    tokenizer = AutoTokenizer.from_pretrained("SSahas/llm_tokenizer")
+    enc = tiktoken.get_encoding("gpt2")
+
 
     # Generate text
-    generated_text = generate_text(model, tokenizer, args.prompt, args.max_tokens, args.temperature)
+    generated_text = generate_text(model, enc, args.prompt, args.max_tokens, args.temperature)
 
     print("Generated text:")
     print(generated_text)

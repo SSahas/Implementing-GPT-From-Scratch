@@ -5,29 +5,70 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 from model import DecoderOnlyModel
-from data import DataLoader
+from data import load_data
+
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+data_dir  = "data"
+
+
+def get_batch(split):
+
+    if split == 'train':
+        data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
+    else:
+        data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')
+
+    ix = torch.randint(len(data) - block_size, (batch_size,))
+    x = torch.stack([torch.from_numpy((data[i:i+block_size]).astype(np.int64)) for i in ix])
+    y = torch.stack([torch.from_numpy((data[i+1:i+1+block_size]).astype(np.int64)) for i in ix])
+    if device == 'cuda':
+        x, y = x.pin_memory().to(device, non_blocking=True), y.pin_memory().to(device, non_blocking=True)
+    else:
+        x, y = x.to(device), y.to(device)
+    return x, y
+
+
+@torch.no_grad()
+def estimate_loss():
+    out = {}
+    model.eval()
+    for split in ['train', 'val']:
+        losses = torch.zeros(eval_iters)
+        for k in range(eval_iters):
+            X, Y = get_batch(split)
+            logits, loss = model(X, Y)
+            losses[k] = loss.item()
+        out[split] = losses.mean()
+    model.train()
+    return out
+
+
 
 def train(config: dict, model: DecoderOnlyModel, data_loader: DataLoader):
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
     model = model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=config['training']['learning_rate'])
     
     max_iters = config['training']['max_iters']
-    losses = []
+    train_losses = []
+    test_losses  = []
 
     for iter in range(max_iters):
         xb, yb = data_loader.get_batch()
         _, loss = model(xb, yb)
-        losses.append(loss.item())
-
+        
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
 
-        if (iter + 1) % 100 == 0:
-          print(f"Step {iter + 1}: Loss = {loss.item()}")
+        if (((iter + 1) % 100) == 0) or ((iter + 1) == max_iters) :
+            losses = estimate_loss()
+            print(f"Step {iter + 1}: Train Loss = {losses['train']:.4f}, Eval loss = {losses['test']:.4f}")
+            train_losses.append(losses['train'])
+            test_losses.append(losses['test'])
 
-        if (iter + 1) % 10000 == 0:
+        if (iter + 1) == max_iters:
             torch.save({
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
@@ -35,12 +76,15 @@ def train(config: dict, model: DecoderOnlyModel, data_loader: DataLoader):
                 'iter': iter,
             }, f"checkpoints/model_iter_{iter+1}.pt")
 
-    return losses
+            
+    
+    return train_losses, test_losses
 
-def plot_loss_curve(losses: list, save_path: str):
+def plot_loss_curve(losses: list, split : str):
+    save_path = "plots" / f"{split}.png" 
     plt.figure(figsize=(10, 6))
     plt.plot(losses)
-    plt.title('Training Loss Curve')
+    plt.title(f'{split} Loss Curve')
     plt.xlabel('Iteration')
     plt.ylabel('Loss')
     plt.savefig(save_path)
@@ -64,12 +108,13 @@ def main():
     model = DecoderOnlyModel(config['model'])
 
     # Train the model
-    losses = train(config, model, data_loader)
+    train_losses, test_losses = train(config, model, data_loader)
 
     # Plot and save the loss curve
-    plot_loss_curve(losses, plots_dir / "loss_curve.png")
+    plot_loss_curve(train_loss, "train")
+    plot_loss_curve(test_loss, "test")
 
-    print("Training completed. Loss curve saved in 'plots' directory.")
+    print("Training completed.Model saved in checkpoints directory,  Loss curves saved in 'plots' directory.")
 
 if __name__ == "__main__":
     main()
