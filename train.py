@@ -45,7 +45,7 @@ def estimate_loss():
 
 
 
-def train(config: dict, model: DecoderOnlyModel, data_loader: DataLoader):
+def train(config: dict, model: DecoderOnlyModel):
     
     model = model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=config['training']['learning_rate'])
@@ -55,7 +55,7 @@ def train(config: dict, model: DecoderOnlyModel, data_loader: DataLoader):
     test_losses  = []
 
     for iter in range(max_iters):
-        xb, yb = data_loader.get_batch()
+        xb, yb = get_batch('train')
         _, loss = model(xb, yb)
         
         optimizer.zero_grad(set_to_none=True)
@@ -103,12 +103,11 @@ def main():
     plots_dir = Path("plots")
     plots_dir.mkdir(exist_ok=True)
 
-    # Initialize DataLoader and model
-    data_loader = DataLoader(config)  # Create DataLoader instance with config
+
     model = DecoderOnlyModel(config['model'])
 
     # Train the model
-    train_losses, test_losses = train(config, model, data_loader)
+    train_losses, test_losses = train(config, model)
 
     # Plot and save the loss curve
     plot_loss_curve(train_loss, "train")
