@@ -20,7 +20,7 @@ def get_batch(split, config):
     if split == 'train':
         data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
     else:
-        data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')
+        data = np.memmap(os.path.join(data_dir, 'test.bin'), dtype=np.uint16, mode='r')
 
     ix = torch.randint(len(data) - config['model']['block_size'], (config['training']['batch_size'],))
     x = torch.stack([torch.from_numpy((data[i:i+config['model']['block_size']]).astype(np.int64)) for i in ix])
