@@ -4,6 +4,8 @@ import argparse
 from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
+import os 
+import tiktoken
 
 from model import DecoderOnlyModel
 from data import load_data
