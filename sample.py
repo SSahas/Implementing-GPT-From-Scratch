@@ -2,9 +2,11 @@ import torch
 import json
 import argparse
 from pathlib import Path
-
+import tiktoken
 from model import DecoderOnlyModel
 from transformers import AutoTokenizer
+
+
 
 def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
     with open(config_path, 'r') as f:
@@ -19,7 +21,9 @@ def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
 def generate_text(model: DecoderOnlyModel, tokenizer, prompt: str, max_new_tokens: int, temperature: float = 1.0) -> str:
     device = next(model.parameters()).device
     print(device)
-    input_ids = tokenizer.encode(prompt, return_tensors='pt')
+    input_ids = tokenizer.encode_ordinary(prompt)
+    input_ids = torch.tensor([input_ids])
+    inputs_ids = input_ids.unsqueeze(0)
     input_ids = input_ids[:, :-1]
        
     with torch.no_grad():
@@ -30,8 +34,9 @@ def generate_text(model: DecoderOnlyModel, tokenizer, prompt: str, max_new_token
             do_sample=True,
             top_k=50,
         )
+    output_ids = output_ids.tolist()[0]
     
-    generated_text = tokenizer.decode(output_ids[0], skip_special_tokens=False)
+    generated_text = tokenizer.decode(output_ids)
     return generated_text
 
 def main():
@@ -48,11 +53,11 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
 
-    # Load the tokenizer
-    tokenizer = AutoTokenizer.from_pretrained("SSahas/llm_tokenizer")
+    enc = tiktoken.get_encoding("gpt2")
+
 
     # Generate text
-    generated_text = generate_text(model, tokenizer, args.prompt, args.max_tokens, args.temperature)
+    generated_text = generate_text(model, enc, args.prompt, args.max_tokens, args.temperature)
 
     print("Generated text:")
     print(generated_text)

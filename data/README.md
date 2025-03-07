@@ -1,2 +1,5 @@
-- The load_data.py is used to load the [tokenized data](https://huggingface.co/datasets/SSahas/llm_pretrain_dataset) from huggingface_hub for training the model. The original text dataset which is used  as the pretraining data is
-[salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext). To know how the tokenized dataset is created , see [preprocessing.ipynb](https://github.com/SSahas/Implementing-LLM-From-Scratch/blob/main/assets/preprocessing.ipynb)
+- The laod_data.py is used to create two .bin files, train.bin and test.bin. These files are tokenized data which can be loaded while training the model. The original text dataset which was used for pretraining is [salesforce/wikitext](https://huggingface.co/datasets/Salesforce/wikitext).
+
+- After running the load_data.py
+1. train.bin ~ 220 mb
+2. test.bin ~ 540 kb

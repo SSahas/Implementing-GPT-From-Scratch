@@ -22,7 +22,7 @@ python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
 ## Model Details
 ```
 n_embd = 512
-vocab_size = 28144
+vocab_size = 50257
 n_layers = 6
 n_heads = 8
 block_size = 512 # number to previous tokens to attend to perform attention
@@ -34,6 +34,9 @@ learning rate = 5e-4
 Train Loss             |  Test loss
 :-------------------------:|:-------------------------:
 ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/train.png)  |  ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/test.png)
+
+
+
 
 # Sample Generations
 > *This is used for its purpose . The castle has its most extensive military value , with its new weapons and the ability to draw guns against and destroy obstacles ,
@@ -52,4 +55,3 @@ but it has always been used for long - duration.*
 - [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
 - [t5-pytorch](https://github.com/conceptofmind/t5-pytorch)
 - [nanoT5](https://github.com/PiotrNawrot/nanoT5)
-
