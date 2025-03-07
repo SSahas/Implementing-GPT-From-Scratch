@@ -135,6 +135,9 @@ class DecoderOnlyModel(nn.Module):
             else:
                 _, idx_next = torch.topk(probs, k=1, dim=-1)
 
+            if idx_next == 50256:
+                return idx
+
             idx = torch.cat((idx, idx_next), dim=1)
 
         return idx
