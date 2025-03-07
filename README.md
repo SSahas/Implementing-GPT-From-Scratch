@@ -22,7 +22,7 @@ python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
 ## Model Details
 ```
 n_embd = 512
-vocab_size = 28144
+vocab_size = 50257
 n_layers = 6
 n_heads = 8
 block_size = 512 # number to previous tokens to attend to perform attention
