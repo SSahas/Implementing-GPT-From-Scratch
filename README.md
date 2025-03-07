@@ -35,6 +35,19 @@ Train Loss             |  Test loss
 :-------------------------:|:-------------------------:
 ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/train.png)  |  ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/test.png)
 
+# Sample Generations
+> *This is used for its purpose . The castle has its most extensive military value , with its new weapons and the ability to draw guns against and destroy obstacles ,
+but it has always been used for long - duration.*
+
+> *Once there was no threat to the United States who are expecting asylum to the United States government . The National Hurricane Center issued the same day the agency requested them to the Washington National Weather Service agencies at any request . By 1997 , the agency also considered the agency had a $ 20 , 000 fine ( equivalent to $ 15 , 060 , 061 in 2016 ) for an upcoming hurricane.*
+
+> *This is to be called the " great leader of all the major things and the most beautiful leader of all the time " he is " not so happy " if he and his co - workers will be able to accomplish the truth they are in vain when him to death .*
+
+
+
+
+
+
 # References 
 - [Andrej karpathy-nanoGPT](https://github.com/karpathy/nanoGPT)
 - [t5-pytorch](https://github.com/conceptofmind/t5-pytorch)
