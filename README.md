@@ -1,5 +1,5 @@
 # Implementing Decoder only LLM Model (GPT style) from scratch with PyTorch
-- Pretraining a LLM model for Text generation, used Salesforce/wikitext for training. The model was trained for 30000 iterations with a batch size of 8 for ~2.5 hours on Tesla P100 (Kaggle Free gpu support). The training loss is around 3.5. Used adam optimizer with a learning rate of 5e-4. After training, the model is producing little reasonable english, can be trained for more time with bigger n_embd and block size for better generation.
+- Pretraining a LLM model for Text generation, used Salesforce/wikitext for training. The model was trained for 30000 iterations with a batch size of 8 for ~2.5 hours on Tesla P100 (Kaggle Free gpu support). The training loss is around 3.5. Used adam optimizer with a learning rate of 5e-4. After training, the model is generating english with understandable grammer, can be trained for more time with bigger n_embd and block size for better generation.
 
 
 - To train the model , clone the repository 
@@ -35,6 +35,9 @@ Train Loss             |  Test loss
 :-------------------------:|:-------------------------:
 ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/train.png)  |  ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/test.png)
 
+
+
+
 # Sample Generations
 > *This is used for its purpose . The castle has its most extensive military value , with its new weapons and the ability to draw guns against and destroy obstacles ,
 but it has always been used for long - duration.*
@@ -42,6 +45,7 @@ but it has always been used for long - duration.*
 > *Once there was no threat to the United States who are expecting asylum to the United States government . The National Hurricane Center issued the same day the agency requested them to the Washington National Weather Service agencies at any request . By 1997 , the agency also considered the agency had a $ 20 , 000 fine ( equivalent to $ 15 , 060 , 061 in 2016 ) for an upcoming hurricane.*
 
 > *This is to be called the " great leader of all the major things and the most beautiful leader of all the time " he is " not so happy " if he and his co - workers will be able to accomplish the truth they are in vain when him to death .*
+
 
 
 
