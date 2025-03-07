@@ -84,7 +84,7 @@ def create_bin(dataset, split:str):
 
 def main():
 
-        print("Creting .bin files for training the model")
+        print("Creating .bin files for training the model")
         ds = load_dataset("Salesforce/wikitext", "wikitext-103-v1")
 
         ds = ds.filter(lambda example: len(example['text']) > 0)
