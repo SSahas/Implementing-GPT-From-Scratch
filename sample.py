@@ -36,7 +36,7 @@ def generate_text(model: DecoderOnlyModel, tokenizer, prompt: str, max_new_token
         )
     output_ids = output_ids.tolist()[0]
     
-    generated_text = enc.decode(output_ids, skip_special_tokens=False)
+    generated_text = tokenizer.decode(output_ids)
     return generated_text
 
 def main():
