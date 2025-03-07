@@ -13,14 +13,13 @@ def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
         config = json.load(f)
     
     model = DecoderOnlyModel(config['model'])
-    checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
+    checkpoint = torch.load(checkpoint_path, weights_only=True, map_location=torch.device('cpu'))
     model.load_state_dict(checkpoint['model_state_dict'])
     model.eval()
     return model
 
 def generate_text(model: DecoderOnlyModel, tokenizer, prompt: str, max_new_tokens: int, temperature: float = 1.0) -> str:
     device = next(model.parameters()).device
-    print(device)
     input_ids = tokenizer.encode_ordinary(prompt)
     input_ids = torch.tensor([input_ids])
     inputs_ids = input_ids.unsqueeze(0)
