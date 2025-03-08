@@ -8,7 +8,13 @@
 git clone https://github.com/SSahas/Implementing-GPT-From-Scratch.git
 ```
 ## Training 
-- To train the model
+- create tokenized data
+  
+```
+python data/load_data.py 
+```
+- Train the model
+
 ```
 python train.py --config config/config.json
 ```
