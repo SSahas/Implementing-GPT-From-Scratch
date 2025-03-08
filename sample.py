@@ -1,10 +1,8 @@
 import torch
 import json
 import argparse
-from pathlib import Path
 import tiktoken
 from model import DecoderOnlyModel
-from transformers import AutoTokenizer
 
 
 

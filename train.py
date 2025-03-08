@@ -5,14 +5,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import tiktoken
 
 from model import DecoderOnlyModel
-from data import load_data
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-data_dir = f"{os.getcwd()}/Implementing-GPT-From-Scratch/data"
+data_dir = f"{os.getcwd()}/data"
 
 
 def get_batch(split, config):
