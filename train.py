@@ -124,7 +124,7 @@ def main():
     plot_loss_curve(train_losses, "train")
     plot_loss_curve(test_losses, "test")
 
-    print("Training completed.Model saved in checkpoints directory,  Loss curves saved in 'plots' directory.")
+    print("Training completed. Model saved in checkpoints directory, Loss curves saved in 'plots' directory.")
 
 
 if __name__ == "__main__":
