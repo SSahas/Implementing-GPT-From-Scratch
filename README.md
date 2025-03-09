@@ -1,4 +1,4 @@
-# Implementing Decoder only LLM Model (GPT style) from scratch with PyTorch
+# Building and PreTraining Decoder only LLM Model (GPT style) from scratch with PyTorch
 - Pretraining a LLM model for Text generation, used Salesforce/wikitext for training. The model was trained for 30000 iterations with a batch size of 8 for ~3 hours on a 16GB Tesla P100 (Kaggle Free gpu support). The training loss is around 3.7. Used adam optimizer with a learning rate of 5e-4. After training, the model is generating english with understandable grammer.
 
 
