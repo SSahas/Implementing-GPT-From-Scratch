@@ -37,7 +37,7 @@ learning rate = 5e-4
 ```
 
 # Loss curves 
-- The x-axis represents iterations in hundreds. The model was trained for a total of 30,000 iterations.
+- The x-axis represents iterations in hundreds. The model was trained for a total of 30,000 training steps.
   
 Train Loss             |  Test loss
 :-------------------------:|:-------------------------:
