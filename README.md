@@ -41,7 +41,7 @@ learning rate = 5e-4
   
 Train Loss             |  Test loss
 :-------------------------:|:-------------------------:
-![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/train.png)  |  ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/add_eval/assets/test.png)
+![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/main/assets/train.png)  |  ![](https://github.com/SSahas/Implementing-GPT-From-Scratch/blob/main/assets/test.png)
 
 
 
