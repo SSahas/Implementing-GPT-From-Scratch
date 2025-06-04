@@ -25,7 +25,7 @@ python train.py --config config/config.json
 python sample.py --model_path path/to/saved/model --prompt "Your prompt here"
 ```
 
-## Model Details
+## Model Details and Loss curves
 ```
 n_embd = 512
 vocab_size = 50257
@@ -35,8 +35,6 @@ block_size = 512 # number to previous tokens to attend to perform attention
 batch_size = 8
 learning rate = 5e-4
 ```
-
-# Loss curves 
 - The x-axis represents iterations in hundreds. The model was trained for a total of 30,000 training steps.
   
 Train Loss             |  Test loss
