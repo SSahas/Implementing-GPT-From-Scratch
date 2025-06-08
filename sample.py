@@ -5,7 +5,6 @@ import tiktoken
 from model import DecoderOnlyModel
 
 
-
 def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
     with open(config_path, 'r') as f:
         config = json.load(f)
@@ -18,10 +17,8 @@ def load_model(config_path: str, checkpoint_path: str) -> DecoderOnlyModel:
 
 def generate_text(model: DecoderOnlyModel, tokenizer, prompt: str, max_new_tokens: int, temperature: float = 1.0) -> str:
     device = next(model.parameters()).device
-    input_ids = tokenizer.encode_ordinary(prompt)
+    input_ids = tokenizer.encode_ordinary(prompt.strip())
     input_ids = torch.tensor([input_ids])
-    inputs_ids = input_ids.unsqueeze(0)
-    input_ids = input_ids[:, :-1]
        
     with torch.no_grad():
         output_ids = model.generate(
@@ -51,7 +48,6 @@ def main():
     model = model.to(device)
 
     enc = tiktoken.get_encoding("gpt2")
-
 
     # Generate text
     generated_text = generate_text(model, enc, args.prompt, args.max_tokens, args.temperature)
